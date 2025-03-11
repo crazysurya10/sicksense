@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='stylesheets/style.css') }}" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="head-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5"/>
+                    <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z"/>
+                </svg>
+                
+            </div>
+            <a class="navbar-brand" href="/">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/creator">Creator</a>
+              </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/origin">Origin</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search1</button>
+            </form>
+          </div>
+        </div>
+    </div>
+    
+
+  <div id="content">
+    <form class="search-container">
+<!--      
+      <input type="text" name="disease" class="search-bar" placeholder="Type a disease">
+      <button class="search-button" type="submit" value="submit">Search1</button>
+-->      
+<select id="myDropdown">
+  <option value="" disabled selected>Select an option</option>
+</select>
+
+<button class="search-button" type="button" value="submit" onclick="callFlaskRoute()">Search1</button>
+
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function callFlaskRoute() {
+        //token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InN1cnlhYmhhdml0aEBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjExODg5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiMTA5IiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9saW1pdCI6IjEwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcCI6IkJhc2ljIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAyNS0wMy0wMiIsImlzcyI6Imh0dHBzOi8vYXV0aHNlcnZpY2UucHJpYWlkLmNoIiwiYXVkIjoiaHR0cHM6Ly9oZWFsdGhzZXJ2aWNlLnByaWFpZC5jaCIsImV4cCI6MTc0MTA3NTE0MSwibmJmIjoxNzQxMDY3OTQxfQ.aiULc6xNM4xZHMco3-Zsh6GFda-WaHfWp3Wrn2fZj7M"
+        const dropdown = document.getElementById("myDropdown");
+        var param1="["+dropdown.value+"]";
+        //console.log("param1::::"+param1)
+        fetch('/listdiagnosis/'+param1, {  // Replace '/your_flask_route' with your actual route
+          method: 'GET', // Or 'GET' depending on your needs
+          // You can add headers or body here if needed
+        })
+        .then(response => {
+          if (response.ok) {
+          
+
+
+            return response.text(); // Or response.json() if your server returns JSON
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          // Filling up the Table
+          //console.log('Response from server:', data);
+          const disease_data_ele = document.getElementById("disease");
+          //disease_data_ele.innerText=data;  
+          data = JSON.parse(data);
+
+          //console.log(data[0]);
+          
+          let rows = "";
+          for (let i = 0; i < data.length; i++) {
+              const item = data[i];
+              const issue = item.Issue;
+              const specialisations = item.Specialisation;
+              rows += `
+                  <tr>
+                      <td>${issue.Name}</td>
+                      <td>${issue.Accuracy}%</td>
+                      <td>${specialisations[0].Name}</td>
+                  </tr>
+              `;
+          }
+          
+          
+          // Insert the rows into the table body
+          tableBody.innerHTML = rows;
+          
+
+
+
+          // Handle the response from the server, e.g., update the UI
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+      }
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
+
+    var data=JSON.parse('{{ data | tojson | safe }}');
+    //console.log("data is::"+data);
+    this.populateDropdown(); 
+    function populateDropdown() {
+      const dropdown = document.getElementById("myDropdown");
+      Object.values(data).forEach(item => {
+          const option = document.createElement("option");
+          option.value=item.ID
+          option.text=item.Name
+          //console.log("item Name::"+item.Name+"\t\tID::"+item.ID)
+
+          dropdown.appendChild(option);
+      });
+  }
+
+</script>
+
+
+
+    </form>
+    <h1 id="symptoms-title">
+      S
+      <br>
+      Y
+      <br>
+      M
+      <br>
+      P
+      <br>
+      T
+      <br>
+      O
+      <br>
+      M
+      <br>
+      S
+    </h1>
+      
+    <div id="search-line" class="line"></div> 
+    
+    
+    <button class="icon-button" id="popupButton">
+      <i class="fa fa-question-circle" style="font-size:36px"></i>
+    </button>
+
+
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <h3>What to do?</h3>
+        <p>Search any disease you want, and it will output some of the noticeable symptoms</p>
+        <button id="closeButton">Got it!</button>
+      </div>
+    </div>
+
+    <script>
+      // Script for Popup Button
+      const popupBttn = document.getElementById('popupButton');
+      const closeBttn = document.getElementById('closeButton');
+      const pop = document.getElementById('popup');
+  
+      // Open popup when icon is clicked
+      popupBttn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent the click from reaching the document
+        pop.style.display = 'block';
+      });
+  
+      closeBttn.addEventListener('click', () => {
+        pop.style.display = 'none';
+        console.log("clicked on close bttn");
+      })
+      
+
+      // Prevent popup from closing when clicking inside it
+      pop.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    </script>
+
+<img class="map-img"src="{{ url_for('static', filename='images/symptoms-icon.png') }}">
+
+
+    <img class="icon-img"src="{{ url_for('static', filename='images/background-header1.png') }}">
+  </div>
+      <div id="disease"></div>
+
+      <table id ="dataTable">
+        <thead>
+            <tr>
+                <th class="header1">Disease</th>
+                <th class="header2">Accuracy of Predicting</th>
+                <th class="header3">Doctor Type</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td id="r1c1">Row 1, Cell 1</td>
+                <td id="r1c2" >Row 1, Cell 2</td>
+                <td id="r1c3" >Row 1, Cell 3</td>
+            </tr>
+            <tr>
+                <td id="r2c1" >Row 2, Cell 1</td>
+                <td id="r2c2" >Row 2, Cell 2</td>
+                <td id="r2c3" >Row 2, Cell 3</td>
+            </tr>
+            <tr>
+                <td id="r3c1" >Row 3, Cell 1</td>
+                <td id="r3c2" >Row 3, Cell 2</td>
+                <td id="r3c3" >Row 3, Cell 3</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

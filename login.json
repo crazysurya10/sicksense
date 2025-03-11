@@ -1,0 +1,14 @@
+[
+    {
+        "username": "user1",
+        "password": "password1",
+        "symptoms": [],
+        "zipcodes": []
+    },
+    {
+        "username": "user2",
+        "password": "password2",
+        "symptoms": [],
+        "zipcodes": []
+    }
+]
